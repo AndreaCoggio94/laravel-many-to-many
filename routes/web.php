@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TechnologyController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 
 use App\Http\Controllers\Guest\PageController as GuestPageController;
@@ -30,6 +32,10 @@ Route::middleware(['auth', 'verified'])
     Route::get('/', [AdminPageController::class, 'index'])->name('home');
 
     Route::resource('projects', ProjectController::class);
+
+    Route::resource('technologies', TechnologyController::class);
+
+    Route::resource('types', TypeController::class);
 
   });
 
