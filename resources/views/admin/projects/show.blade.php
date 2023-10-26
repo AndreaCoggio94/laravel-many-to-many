@@ -41,9 +41,23 @@
             <div class="col">
                 <p> 
                     <strong>Type Description: </strong> <br>
-                {{$project->type->description ?? "null"}}
+                {{$project->type?->description ?? "null"}}
                 </p>
             </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p> 
+                    <strong>Technologies:</strong>
+                    @forelse ($project->technologies as $technology)
+                      {{ $technology->label }} @unless($loop->last) , @else . @endunless
+                    @empty
+                    No technology associated
+                    @endforelse
+                    
+                </p>
+            </div>
+            
         </div>
 
     </div>
