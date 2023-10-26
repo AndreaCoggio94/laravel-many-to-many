@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
 use App\Models\Type;
+use App\Models\Technology;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 
 use App\Http\Controllers\Controller;
 
@@ -33,8 +35,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        $project = new Project();
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $technologies = Technology::orderBy("label","asc")->get();
+        return view('admin.projects.create', compact('types','technologies'));
     }
 
     /**
@@ -51,6 +55,10 @@ class ProjectController extends Controller
         $project->fill($data);
         $project->slug = Str::slug($project->name);
         $project->save();
+
+        if(Arr::exists($data, "technologies")){
+            $project->technologies()->attach($data["technologies"]);
+        }
 
         return redirect()->route('admin.projects.show', $project)
         ->with('message_type','success')
@@ -125,6 +133,7 @@ class ProjectController extends Controller
             'description' => 'nullable|string',
             'repository' => 'nullable|string',
             'type_id'=> 'nullable', 'exists:types,id',
+            'technologies' => 'nullable','exists:technologies,id'
           ],
           [
             'name.required' => 'The name is required',
@@ -135,6 +144,8 @@ class ProjectController extends Controller
             'repository.string' => 'The thumb must be a url',
 
             'type_id.exists'=> 'The inserted Type is not valid',
+
+            'technologies.exist' => 'The inserted Technologies are not valid'
           ]
         )->validate();
       
