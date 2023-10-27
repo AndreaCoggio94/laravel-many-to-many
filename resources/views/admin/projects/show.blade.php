@@ -9,6 +9,14 @@
             </button>
         <h1> {{ $project->name}}</h1>
         <div class="row">
+            <div class="col-2">
+                <p>
+                    <strong>Slug:</strong> <br>
+                    {{$project->slug}}
+                </p>
+
+
+            </div>
             <div class="col">
                 <p> 
                     <strong>Description: </strong> <br>
@@ -16,6 +24,9 @@
                 </p>
                 
             </div>
+            
+        </div>
+        <div class="row">
             <div class="col">
                 <p>
                     <strong>Repository link:</strong> <br>
@@ -24,6 +35,22 @@
 
 
             </div>
+            <div class="col">
+                <p> 
+                    <strong>Created at: </strong> <br>
+                     {{$project->created_at}}
+                </p>
+                
+            </div>
+            <div class="col">
+                <p>
+                    <strong>Updated at:</strong> <br>
+                    {{$project->updated_at}}
+                </p>
+
+
+            </div>
+            
         </div>
         <div class="row">
             <div class="col">
