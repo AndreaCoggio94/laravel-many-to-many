@@ -9,6 +9,13 @@
             </button>
         <h1> {{ $type->name}}</h1>
         <div class="row">
+            <div class="col-2">
+                <p> 
+                    <strong>Colour: </strong> <br>
+                     {{$type->colour}}
+                </p>
+                
+            </div>
             <div class="col">
                 <p> 
                     <strong>Description: </strong> <br>

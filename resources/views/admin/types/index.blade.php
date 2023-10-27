@@ -11,6 +11,7 @@
             <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Colour</th>
             <th scope="col">Created at</th>
             <th scope="col">Updated at</th>
             <th scope="col">Actions</th>
@@ -23,6 +24,7 @@
               <th scope="row">{{$type->id}}</th>
               <td>{{$type->label}}</td>
               <td>{{$type->description}}</td>
+              <td>{{$type->colour}}</td>
               <td>{{$type->created_at}}</td>
               <td>{{$type->updated_at}}</td>
               <td>

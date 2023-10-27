@@ -32,6 +32,14 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
+                <div class="mb-3 col">
+                    <label for="colour" class="form-label @error('colour') is-invalid @enderror">Colour</label>
+                    <input type="color" name="colour" id="colour" value="{{ old('colour') }}" class="form-control">
+                    @error('colour')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
                 
                 
                 
