@@ -30,8 +30,11 @@
               <td>{{$project->deleted_at}}</td>
               
               <td>
-                <a href="{{ route('admin.projects.show' , $project) }}" class="btn btn-outline-primary">More</a>
-                <a href="{{ route('admin.projects.edit' , $project)}}" class="btn btn-outline-primary">Edit</a>
+                
+                {{-- <a href="{{ route('admin.projects.trash.restore' , $project)}}" class="btn btn-outline-primary">Restore</a> --}}
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#restoreModal-{{$project->id}}">
+                    Restore
+                  </button>
                 <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{$project->id}}">
                     Delete
                   </button>
@@ -40,7 +43,7 @@
             @empty
             <tr>
                 <td colspan="5">
-                <i>No projects present</i>    
+                <i>No trashed projects present</i>    
                 </td>    
             </tr>    
             @endforelse
@@ -51,6 +54,11 @@
 </div>
 @endsection
 
-{{-- @section('modal')
-    @include('partials._modalDelete')
-@endsection --}}
+@section('modal')
+    @foreach ($projects as $project)
+        @include('partials._modalForceDelete')
+
+
+        @include('partials._modalRestore')
+    @endforeach
+@endsection
