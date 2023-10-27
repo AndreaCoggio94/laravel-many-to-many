@@ -49,7 +49,7 @@
 
 @section('modal')
   @foreach ($technologies as $technology)
-    @include('partials._modalDeleteTechnology')
+    @include('partials.modals.technologies._modalDelete')
       
   @endforeach
 @endsection
