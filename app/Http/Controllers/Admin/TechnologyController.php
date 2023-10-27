@@ -6,6 +6,7 @@ use App\Models\Technology;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TechnologyRequest;
 
 class TechnologyController extends Controller
 {
@@ -36,7 +37,7 @@ class TechnologyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TechnologyRequest $request)
     {
         $data = $request->all();
 
@@ -75,7 +76,7 @@ class TechnologyController extends Controller
      * @param  \App\Models\Technology  $technology
      * * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Technology $technology)
+    public function update(TechnologyRequest $request, Technology $technology)
     {
         $data = $request->all();
         $technology->update( $data );
