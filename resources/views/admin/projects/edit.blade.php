@@ -17,11 +17,14 @@
         <form action="{{route('admin.projects.update', $project)}}" method="POST">
             @csrf
             @method('PUT')
-            <div class="row mb-2">
+            <div class="row mb-4">
 
                 <h1>Updating {{$project->name}}</h1>
                 
             </div>
+            
+
+            
             <div class="row">
                 
                 <div class="mb-3 col">
@@ -71,6 +74,9 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col">
+
+                
                 <label class="form-label">Technologies</label>
                 <div class="form-check @error('tags') is-invalid @enderror p-0">
                 @foreach ($technologies as $technology)
@@ -95,7 +101,9 @@
                 </div>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-outline-primary ">Edit</button>
+            
+        </div>
+        <button type="submit" class="mt-4 col btn btn-outline-primary ">Edit</button>
                 
         </form>
     </div>
