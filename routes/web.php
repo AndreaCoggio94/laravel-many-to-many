@@ -31,14 +31,14 @@ Route::middleware(['auth', 'verified'])
 
     Route::get('/', [AdminPageController::class, 'index'])->name('home');
 
-    Route::get('/admin/projects/trash', [ProjectController::class, 'trash'])->name('trash.index');
-    Route::patch('/admin/projects/trash/{project}', [ProjectController::class, 'restore'])->name('trash.restore');
-    Route::delete('/admin/projects/trash/{project}', [ProjectController::class, 'forceDestroy'])->name('trash.forceDestroy');
+    Route::get('/projects/trash/index', [ProjectController::class, 'trash'])->name('projects.trash.index');
+    Route::patch('/projects/trash/{project}', [ProjectController::class, 'restore'])->name('projects.trash.restore');
+    Route::delete('/projects/trash/{project}', [ProjectController::class, 'forceDestroy'])->name('projects.trash.forceDestroy');
     Route::resource('projects', ProjectController::class);
 
     Route::resource('technologies', TechnologyController::class);
 
-    Route::resource('types', TypeController::class);
+    // Route::resource('types', TypeController::class);
 
   });
 

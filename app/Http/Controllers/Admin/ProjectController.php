@@ -132,7 +132,16 @@ class ProjectController extends Controller
         ->with("message","project eliminated with success");
     }
 
-
+    /**
+     * Display a listing of the trashed resources.
+     *
+     * * @return \Illuminate\Http\Response
+     */
+    public function trash()
+    {
+        $projects = Project::orderBy('id')->onlyTrashed()->paginate(10);
+        return view("admin.projects.trash.index", compact("projects"));
+    }
 
     private function validation($data) {
         $validator = Validator::make(

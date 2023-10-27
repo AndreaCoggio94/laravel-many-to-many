@@ -51,6 +51,6 @@
 </div>
 @endsection
 
-@section('modal')
+{{-- @section('modal')
     @include('partials._modalDelete')
-@endsection
+@endsection --}}

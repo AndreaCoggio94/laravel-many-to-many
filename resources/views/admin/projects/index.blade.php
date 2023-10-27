@@ -4,6 +4,7 @@
 <div class="container mt-5">
 
     <a href="{{route('admin.projects.create')}}" class="btn btn-outline-primary">Add project</a>
+    <a href="{{route('admin.projects.trash.index')}}" class="btn btn-outline-primary">Show trashed</a>
 
     <table class="table">
         <thead>
@@ -52,5 +53,8 @@
 @endsection
 
 @section('modal')
+  @foreach ($projects as $project)
     @include('partials._modalDelete')
+      
+  @endforeach
 @endsection
