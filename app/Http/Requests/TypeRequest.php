@@ -26,7 +26,7 @@ class TypeRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:20'],
             'description' => ['required', 'string'],
-            
+            'colour' => ['required', 'string', 'max:7'],
         ];
     }
 
@@ -39,6 +39,10 @@ class TypeRequest extends FormRequest
 
             'description.required' => 'The description is required',
             'description.string' => 'The description must be a string',
+
+            'colour.required' => 'The colour is required',
+            'colour.string' => 'The colour must be a string',
+            'colour.max' => 'The colour must have a maximum of 7 characters'
         ];
     }
 }

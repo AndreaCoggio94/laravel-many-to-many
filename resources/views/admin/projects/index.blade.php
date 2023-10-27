@@ -26,7 +26,7 @@
               <th scope="row">{{$project->id}}</th>
               <td>{{$project->name}}</td>
               <td>{{$project->type->id ?? "null"}}</td>
-              <td>{{$project->type->name ?? "null"}}</td>
+              <td><span class="badge" style="background-color: '{{$project->type->colour}}'">{{$project->type->name ?? "null"}} </span></td>
               <td>{{$project->slug}}</td>
               <td>{{$project->created_at}}</td>
               <td>{{$project->updated_at}}</td>

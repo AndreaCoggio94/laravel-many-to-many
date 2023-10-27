@@ -24,6 +24,7 @@ class TypeSeeder extends Seeder
             $type = new Type();
             $type->name = $_name;
             $type->description = $faker->text($maxNbChars = 200);
+            $type->colour = $faker->hexColor();
             $type->save();
         }
     }
