@@ -24,6 +24,14 @@
       @include('partials._navbar')
 
       <main class="">
+        @if (session('message'))
+    <div class="container">
+
+      <div class="alert alert-{{session('message_type') ?? 'info'}} mb-2">
+        {{session('message')}}
+      </div>
+    </div>
+    @endif
         @yield('content')
       </main>
     </div>
