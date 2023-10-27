@@ -162,6 +162,23 @@ class ProjectController extends Controller
     }
 
 
+    /**
+     * Restore the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Project  $project
+     * * @return \Illuminate\Http\Response
+     */
+    public function restore(int $id)
+    {
+        $project = Project::onlyTrashed()->findOrFail($id);
+        $project->restore();
+
+        return redirect()->route("admin.projects.trash.index", $project)
+        ->with("message_type","success")
+        ->with("message","project restored with success");
+    }
+
     // # validator
     private function validation($data) {
         $validator = Validator::make(
