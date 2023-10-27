@@ -56,9 +56,9 @@
 
 @section('modal')
     @foreach ($projects as $project)
-        @include('partials._modalForceDelete')
+        @include('partials.modals.projects._modalForceDelete')
 
 
-        @include('partials._modalRestore')
+        @include('partials.modals.projects._modalRestore')
     @endforeach
 @endsection

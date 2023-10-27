@@ -91,5 +91,5 @@
 @endsection
 
 @section('modal')
-    @include('partials._modalDelete')
+    @include('partials.modals.projects._modalDelete')
 @endsection
