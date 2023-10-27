@@ -17,7 +17,7 @@
         <form action="{{route('admin.projects.store')}}" method="POST">
             @csrf
             
-            <div class="row mb-2">
+            <div class="row mb-4">
 
                 <h1>Creating new project</h1>
                 
@@ -71,6 +71,9 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col">
+
+                
                 <label class="form-label">Technologies</label>
                 <div class="form-check @error('tags') is-invalid @enderror p-0">
                 @foreach ($technologies as $technology)
@@ -95,7 +98,8 @@
                 </div>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-outline-primary ">Submit</button>
+            </div>
+            <button type="submit" class="mt-4 btn btn-outline-primary ">Submit</button>
                 
         </form>
     </div>
