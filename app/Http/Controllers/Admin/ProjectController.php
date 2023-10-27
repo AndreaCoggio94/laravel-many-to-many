@@ -124,7 +124,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        $project->technologies()->detach();
+        // $project->technologies()->detach();
         $project->delete();
 
         return redirect()->route("admin.projects.index")
@@ -143,6 +143,26 @@ class ProjectController extends Controller
         return view("admin.projects.trash.index", compact("projects"));
     }
 
+
+    /**
+     * Remove permanently the specified resource from storage.
+     *
+     * @param  \App\Models\Project  $project
+     * * @return \Illuminate\Http\Response
+     */
+    public function forceDestroy(int $id)
+    {
+        $project = Project::onlyTrashed()->findOrFail($id);
+        $project->technologies()->detach();
+        $project->forceDelete();
+
+        return redirect()->route("admin.projects.trash.index")
+        ->with("message_type","success")
+        ->with("message","project permanently eliminated with success");
+    }
+
+
+    // # validator
     private function validation($data) {
         $validator = Validator::make(
             $data, 

@@ -40,7 +40,7 @@
             @empty
             <tr>
                 <td colspan="5">
-                <i>No projects present</i>    
+                <i>No trashed projects present</i>    
                 </td>    
             </tr>    
             @endforelse
@@ -51,6 +51,9 @@
 </div>
 @endsection
 
-{{-- @section('modal')
-    @include('partials._modalDelete')
-@endsection --}}
+@section('modal')
+    @foreach ($projects as $project)
+        @include('partials._modalForceDelete')
+        
+    @endforeach
+@endsection
