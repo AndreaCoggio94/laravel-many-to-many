@@ -14,35 +14,39 @@
             </div>
         @endif
         
-        <form action="{{route('admin.technologies.update', $technology)}}" method="POST">
+        <form action="{{route('admin.types.store')}}" method="POST">
             @csrf
-            @method('PUT')
+            
             <div class="row mb-2">
 
-                <h1>Updating {{$technology->label}}</h1>
+                <h1>Creating new type</h1>
                 
             </div>
+
             <div class="row">
                 
                 <div class="mb-3 col">
-                    <label for="label" class="form-label @error('label') is-invalid @enderror">Label</label>
-                    <input type="text" name="label" id="label" value="{{ old('label') ?? $technology->label }}" class="form-control">
-                    @error('label')
+                    <label for="name" class="form-label @error('name') is-invalid @enderror">Name</label>
+                    <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control">
+                    @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 
                 
+                
+            </div>
+            <div class="row">
                 <div class="mb-3 col">
-                    <label for="colour" class="form-label @error('colour') is-invalid @enderror">Colour</label>
-                    <input type="color" name="colour" id="colour" value="{{ old('colour') ?? $technology->colour }}" class="form-control">
-                    @error('colour')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                    <label for="description" class="form-label @error('description') is-invalid @enderror">Description</label>
+                    <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{ old('description')  }}</textarea>
+                    @error('description')
+                        <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
-        
-            <button type="submit" class="btn btn-outline-primary ">Edit</button>
+            
+            <button type="submit" class="btn btn-outline-primary ">Submit</button>
                 
         </form>
     </div>

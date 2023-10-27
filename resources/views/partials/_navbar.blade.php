@@ -29,6 +29,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.technologies.index') }}">{{ __('Technologies') }}</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.types.index') }}">{{ __('Types') }}</a>
+          </li>
 
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
