@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-5">
 
-    {{-- <a href="{{route('admin.projects.create')}}" class="btn btn-outline-primary">Add project</a> --}}
+    <a href="{{route('admin.projects.index')}}" class="btn btn-outline-primary">Return to projects list</a>
 
     <table class="table">
         <thead>
