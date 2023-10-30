@@ -76,8 +76,14 @@
             <div class="col">
                 <p> 
                     <strong>Technologies:</strong>
+                    
+
                     @forelse ($project->technologies as $technology)
-                      {{ $technology->label }} @unless($loop->last) , @else . @endunless
+                    <span class="badge rounded-pill" 
+                    
+                      style="background-color: {{ $technology->colour}} "
+                      
+                      >{{$technology->label ?? ""}} </span>
                     @empty
                     No technology associated
                     @endforelse

@@ -11,8 +11,9 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
-            <th scope="col">ID of Type</th>
-            <th scope="col">Name of Type</th>
+            {{-- <th scope="col">ID of Type</th> --}}
+            <th scope="col">Type</th>
+            <th scope="col">Technologies</th>
             <th scope="col">Slug</th>
             <th scope="col">Created at</th>
             <th scope="col">Updated at</th>
@@ -25,15 +26,29 @@
             <tr>
               <th scope="row">{{$project->id}}</th>
               <td>{{$project->name}}</td>
-              <td>{{$project->type->id ?? ""}}</td>
+              {{-- <td>{{$project->type->id ?? ""}}</td> --}}
               
               
-              <td><span class="badge" @isset($project->type)
-                  
-               style="background-color: {{ $project->type->colour}} "
-               @endisset
-               >{{$project->type->name ?? ""}} </span></td>
-
+              <td>
+                <span class="badge" @isset($project->type)  
+                style="background-color: {{ $project->type->colour}} "
+                @endisset
+                >{{$project->type->name ?? ""}} </span>
+              </td>
+              <td>
+                
+                    @forelse ($project->technologies as $technology)
+                    <span class="badge rounded-pill" 
+                    
+                      style="background-color: {{ $technology->colour}} "
+                      
+                      >{{$technology->label ?? ""}} </span>
+                    @empty
+                    No technology associated
+                    @endforelse
+                    
+                
+              </td>
               <td>{{$project->slug}}</td>
               <td>{{$project->created_at}}</td>
               <td>{{$project->updated_at}}</td>
