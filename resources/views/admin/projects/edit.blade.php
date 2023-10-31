@@ -14,7 +14,7 @@
             </div>
         @endif
         
-        <form action="{{route('admin.projects.update', $project)}}" method="POST">
+        <form action="{{route('admin.projects.update', $project)}}" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
             <div class="row mb-4">
@@ -43,6 +43,19 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <img src="{{asset('/storage/'.$project->cover_image)}}" class="img-fluid" alt="">
+                </div>
+                <div class="col-8">
+                    <label for="cover_image" class="form-label @error('name') is-invalid @enderror">Cover Image</label>
+                    <input type="file" name="cover_image" id="cover_image" value="{{ old('cover_image') }}" class="form-control">
+                    @error('cover_image')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                
             </div>
             <div class="row">
 

@@ -116,9 +116,13 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
         // $data = $this->validation($request->all(), $project->id);
-        $project->update($data);
+        // $project->update($data);
+
+        $project->fill($data);
 
         $project->slug = Str::slug($project->name);
+
+        $project->save();
 
         if(Arr::exists($data, "technologies")) {
             $project->technologies()->sync($data["technologies"]);
@@ -169,6 +173,9 @@ class ProjectController extends Controller
     {
         $project = Project::onlyTrashed()->findOrFail($id);
         $project->technologies()->detach();
+        if($project->cover_image) {
+            Storage::delete($project->cover_image);
+        }
         $project->forceDelete();
 
         return redirect()->route("admin.projects.trash.index")
