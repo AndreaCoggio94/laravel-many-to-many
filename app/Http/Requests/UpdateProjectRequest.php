@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
 use Illuminate\Validation\Rule;
-class ProjectRequest extends FormRequest
+
+class UpdateProjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,8 @@ class ProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required','string', ],
-            // Rule::unique('projects')
+            'name' => ['required','string', Rule::unique('projects')->ignore($this->project->id)],
+           
             'description' => ['nullable','string'],
             'repository' => ['nullable','string'],
             'type_id'=> ['nullable', 'exists:types,id'],
@@ -42,7 +42,7 @@ class ProjectRequest extends FormRequest
         return [
             'name.required' => 'The name is required',
             'name.string' => 'The name must be a string',
-            // 'name.unique' => 'The name must be unique',
+            'name.unique' => 'The name must be unique',
 
             'description.string' => 'The description must be a string',
             
