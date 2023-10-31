@@ -65,7 +65,7 @@ class ProjectController extends Controller
         // $project->save();
         // $cover_image_path = Storage::put("uploads/projects/{$project->id}/cover_image", $data['cover_image']);
         
-        if(Arr::exists($data, 'cover_image')) {
+        if($request->hasFile('cover_image')) {
         $cover_image_path = Storage::put("uploads/projects/cover_image", $data['cover_image']);
         $project->cover_image_path = $cover_image_path;
         }
@@ -123,6 +123,14 @@ class ProjectController extends Controller
         $project->fill($data);
 
         $project->slug = Str::slug($project->name);
+
+        if($request->hasFile('cover_image')){
+            if($project->cover_image){
+                Storage::delete($project->cover_image);
+            }
+            $cover_image_path = Storage::put("uploads/projects/cover_image", $data['cover_image']);
+            $project->cover_image = $cover_image_path;
+        }
 
         $project->save();
 
