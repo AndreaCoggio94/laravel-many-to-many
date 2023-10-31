@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
 use App\Models\Type;
 use App\Models\Technology;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
+use illuminate\Support\Facades\Storage;
 
 use App\Http\Controllers\Controller;
 
@@ -35,9 +37,11 @@ class ProjectController extends Controller
      */
     public function create()
     {
+
         $project = new Project();
         $types = Type::all();
         $technologies = Technology::orderBy("label","asc")->get();
+
         return view('admin.projects.create', compact('types','technologies'));
     }
 
@@ -47,13 +51,21 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjectRequest $request)
     {
-        $data = $this->validation($request->all());
+        $data = $request->validated();
 
         $project = new Project();
         $project->fill($data);
         $project->slug = Str::slug($project->name);
+        
+        // in case I want to use project id for the uploads
+        // $project->save();
+        // $cover_image_path = Storage::put("uploads/projects/{$project->id}/cover_image", $data['cover_image']);
+
+        $cover_image_path = Storage::put("uploads/projects/cover_image", $data['cover_image']);
+        $project->cover_image_path = $cover_image_path;
+
         $project->save();
 
         if(Arr::exists($data, "technologies")){
@@ -98,9 +110,10 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(ProjectRequest $request, Project $project)
     {
-        $data = $this->validation($request->all(), $project->id);
+        $data = $request->validated();
+        // $data = $this->validation($request->all(), $project->id);
         $project->update($data);
 
         $project->slug = Str::slug($project->name);
@@ -180,30 +193,31 @@ class ProjectController extends Controller
     }
 
     // # validator
-    private function validation($data) {
-        $validator = Validator::make(
-            $data, 
-            [
-            'name' => 'required|string',
-            'description' => 'nullable|string',
-            'repository' => 'nullable|string',
-            'type_id'=> 'nullable', 'exists:types,id',
-            'technologies' => 'nullable','exists:technologies,id'
-          ],
-          [
-            'name.required' => 'The name is required',
-            'name.string' => 'The name must be a string',
+    // private function validation($data) {
+    //     $validator = Validator::make(
+    //         $data, 
+    //         [
+    //         'name' => 'required|string',
+    //         'description' => 'nullable|string',
+    //         'repository' => 'nullable|string',
+    //         'type_id'=> 'nullable', 'exists:types,id',
+    //         'technologies' => 'nullable','exists:technologies,id',
+    //         'cover_image'=> 'nullable', 'image',
+    //       ],
+    //       [
+    //         'name.required' => 'The name is required',
+    //         'name.string' => 'The name must be a string',
 
-            'description.string' => 'The description must be a string',
+    //         'description.string' => 'The description must be a string',
             
-            'repository.string' => 'The thumb must be a url',
+    //         'repository.string' => 'The thumb must be a url',
 
-            'type_id.exists'=> 'The inserted Type is not valid',
+    //         'type_id.exists'=> 'The inserted Type is not valid',
 
-            'technologies.exist' => 'The inserted Technologies are not valid'
-          ]
-        )->validate();
+    //         'technologies.exist' => 'The inserted Technologies are not valid'
+    //       ]
+    //     )->validate();
       
-        return $validator;
-    }
+    //     return $validator;
+    // }
 }

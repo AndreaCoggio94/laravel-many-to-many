@@ -14,7 +14,7 @@
             </div>
         @endif
         
-        <form action="{{route('admin.projects.store')}}" method="POST">
+        <form action="{{route('admin.projects.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             
             <div class="row mb-4">
@@ -39,6 +39,15 @@
                     <label for="repository" class="form-label @error('repository') is-invalid @enderror">Repository link</label>
                     <input type="url" name="repository" id="repository" value="{{ old('repository')  }}" class="form-control">
                     @error('repository')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col">
+                    <label for="cover_image" class="form-label @error('name') is-invalid @enderror">Cover Image</label>
+                    <input type="file" name="cover_image" id="cover_image" value="{{ old('cover_image') }}" class="form-control">
+                    @error('cover_image')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -98,8 +107,9 @@
                 </div>
                 @enderror
             </div>
+            
             </div>
-            <button type="submit" class="mt-4 btn btn-outline-primary ">Submit</button>
+            <button type="submit" class="mt-4 btn btn-outline-primary ">Save and create</button>
                 
         </form>
     </div>
