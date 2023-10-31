@@ -62,11 +62,13 @@ class ProjectController extends Controller
         // in case I want to use project id for the uploads
         // $project->save();
         // $cover_image_path = Storage::put("uploads/projects/{$project->id}/cover_image", $data['cover_image']);
-
+        
+        if(Arr::exists($data, 'cover_image')) {
         $cover_image_path = Storage::put("uploads/projects/cover_image", $data['cover_image']);
         $project->cover_image_path = $cover_image_path;
-
+        }
         $project->save();
+
 
         if(Arr::exists($data, "technologies")){
             $project->technologies()->attach($data["technologies"]);
