@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
     <div class="container mt-5">
         @if ($errors->any())
@@ -45,7 +44,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-4">
+                <div class="col-4" id="cover_image_preview">
                     <img src="{{asset('/storage/'.$project->cover_image)}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-8">
@@ -120,5 +119,17 @@
                 
         </form>
     </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        const inputFileElement = document.getElementById('cover_image');
+        const coverImagePreview = document.getElementById('cover_image_preview');
+        
+        inputFileElement.addEventListener('change', function() {
+            const [file] = this.files;
+            coverImagePreview.src = URL.createObjectUrl(file);
+        })
+    </script>
 @endsection
 
