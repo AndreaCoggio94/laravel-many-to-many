@@ -209,6 +209,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        // 'Storage' => Illuminate\Support\Facades\Storage::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 

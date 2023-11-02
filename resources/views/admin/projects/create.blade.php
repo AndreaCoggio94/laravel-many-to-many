@@ -44,7 +44,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="mb-3 col">
+                <div class="mb-3 col-4" id="cover_image_preview">
+                    <img src="" class="img-fluid" alt="">
+                </div>
+                <div class="mb-3 col-8">
                     <label for="cover_image" class="form-label @error('name') is-invalid @enderror">Cover Image</label>
                     <input type="file" name="cover_image" id="cover_image" value="{{ old('cover_image') }}" class="form-control">
                     @error('cover_image')
@@ -113,4 +116,20 @@
                 
         </form>
     </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        const inputFileElement = document.getElementById('cover_image');
+        const coverImagePreview = document.getElementById('cover_image_preview');
+
+        if (!coverImagePreview.getAttribute('src') ||  coverImagePreview.getAttribute('src') == "http://127.0.0.1:8000/storage") {
+            coverImagePreview.src = "https://placehold.co/400";
+        }
+        
+        inputFileElement.addEventListener('change', function() {
+            const [file] = this.files;
+            coverImagePreview.src = URL.createObjectUrl(file);
+        })
+    </script>
 @endsection

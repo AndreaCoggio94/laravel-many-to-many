@@ -85,7 +85,7 @@
                             
                             >{{$technology->label ?? ""}} </span>
                             @empty
-                            No technology associated
+                            {{-- No technology associated --}}
                             @endforelse
                             
                         </p>

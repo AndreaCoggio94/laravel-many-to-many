@@ -126,6 +126,10 @@
         const inputFileElement = document.getElementById('cover_image');
         const coverImagePreview = document.getElementById('cover_image_preview');
         
+        if (!coverImagePreview.getAttribute('src') ||  coverImagePreview.getAttribute('src') == "http://127.0.0.1:8000/storage") {
+            coverImagePreview.src = "https://placehold.co/400";
+        }
+
         inputFileElement.addEventListener('change', function() {
             const [file] = this.files;
             coverImagePreview.src = URL.createObjectUrl(file);
