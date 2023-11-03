@@ -45,6 +45,8 @@
             </div>
             <div class="row">
                 <div class="col-4" id="cover_image_preview">
+
+                    
                     <img src="{{asset('/storage/'.$project->cover_image)}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-8">

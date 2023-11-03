@@ -11,7 +11,7 @@ use App\Models\Project;
 use App\Models\Type;
 use App\Models\Technology;
 
-use illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
