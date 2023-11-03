@@ -45,7 +45,8 @@
             </div>
             <div class="row">
                 <div class="col-4" >
-                    <img src="{{asset('/storage/'.$project->cover_image)}}" class="img-fluid" alt="" id="cover_image_preview">
+                    <img src="{{$project->cover_image ? asset('/storage/'. $project->cover_image): "https://placehold.co/400"}}" class="img-fluid" alt="" id="cover_image_preview">
+                    
                 </div>
                 <div class="col-8">
                     <label for="cover_image" class="form-label @error('name') is-invalid @enderror">Cover Image</label>
@@ -124,14 +125,11 @@
     <script type="text/javascript">
         const inputFileElement = document.getElementById('cover_image');
         const coverImagePreview = document.getElementById('cover_image_preview');
-        
-        if (!coverImagePreview.getAttribute('src') ||  coverImagePreview.getAttribute('src') == "http://127.0.0.1:8000/storage") {
-            coverImagePreview.src = "https://placehold.co/400";
-        }
 
         inputFileElement.addEventListener('change', function() {
+            console.log('ciao')
             const [file] = this.files;
-            coverImagePreview.src = URL.createObjectUrl(file);
+            coverImagePreview.src = URL.createObjectURL(file);
         })
     </script>
 @endsection

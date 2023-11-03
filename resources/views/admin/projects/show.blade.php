@@ -10,50 +10,34 @@
         <h1 class="mt-4 text-center"> {{ $project->name}}</h1>
         <div class="row g-5 mt-3">
             <div class="col-4">
-                <img src="{{asset('/storage/'. $project->cover_image)}}" class="img-fluid" alt="" id="cover_image_preview">
+                <img src="{{$project->cover_image ? asset('/storage/'. $project->cover_image): "https://placehold.co/400"}}" class="img-fluid" alt="" id="cover_image_preview">
             </div>
             <div class="col-8">
                 <div class="row">
-
-                
                     <div class="col-6">
                         <p>
                             <strong>Slug:</strong> <br>
                             {{$project->slug}}
                         </p>
-            
-            
                     </div>
-                    
-                    
-                
-                
                     <div class="col-6">
                         <p>
                             <strong>Repository link:</strong> <br>
                             {{$project->repository}}
                         </p>
-            
-            
                     </div>
                     <div class="col-6">
                         <p> 
                             <strong>Created at: </strong> <br>
                             {{$project->created_at}}
                         </p>
-                        
                     </div>
                     <div class="col-6">
                         <p>
                             <strong>Updated at:</strong> <br>
                             {{$project->updated_at}}
                         </p>
-            
-            
                     </div>
-                    
-            
-                
                     <div class="col-6">
                         <p> 
                             <strong>Type ID: </strong> <br>
@@ -76,13 +60,9 @@
                     <div class="col-6">
                         <p> 
                             <strong>Technologies:</strong>
-                            
-            
                             @forelse ($project->technologies as $technology)
                             <span class="badge rounded-pill" 
-                            
                             style="background-color: {{ $technology->colour}} "
-                            
                             >{{$technology->label ?? ""}} </span>
                             @empty
                             {{-- No technology associated --}}
@@ -111,18 +91,3 @@
     @include('partials.modals.projects._modalDelete')
 @endsection
 
-@section('scripts')
-    <script type="text/javascript">
-        // const inputFileElement = document.getElementById('cover_image');
-        const coverImagePreview = document.getElementById('cover_image_preview');
-
-        if (!coverImagePreview.getAttribute('src') ||  coverImagePreview.getAttribute('src') == "http://127.0.0.1:8000/storage") {
-            coverImagePreview.src = "https://placehold.co/400";
-        }
-        
-        // inputFileElement.addEventListener('change', function() {
-        //     const [file] = this.files;
-        //     coverImagePreview.src = URL.createObjectUrl(file);
-        // })
-    </script>
-@endsection
