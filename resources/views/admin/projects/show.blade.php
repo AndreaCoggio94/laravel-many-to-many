@@ -10,7 +10,7 @@
         <h1 class="mt-4 text-center"> {{ $project->name}}</h1>
         <div class="row g-5 mt-3">
             <div class="col-4">
-                <img src="{{asset('/storage/'. $project->cover_image)}}" class="img-fluid" alt="">
+                <img src="{{asset('/storage/'. $project->cover_image)}}" class="img-fluid" alt="" id="cover_image_preview">
             </div>
             <div class="col-8">
                 <div class="row">
@@ -109,4 +109,20 @@
 
 @section('modal')
     @include('partials.modals.projects._modalDelete')
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        // const inputFileElement = document.getElementById('cover_image');
+        const coverImagePreview = document.getElementById('cover_image_preview');
+
+        if (!coverImagePreview.getAttribute('src') ||  coverImagePreview.getAttribute('src') == "http://127.0.0.1:8000/storage") {
+            coverImagePreview.src = "https://placehold.co/400";
+        }
+        
+        // inputFileElement.addEventListener('change', function() {
+        //     const [file] = this.files;
+        //     coverImagePreview.src = URL.createObjectUrl(file);
+        // })
+    </script>
 @endsection

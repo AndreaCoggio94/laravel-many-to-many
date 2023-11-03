@@ -44,8 +44,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="mb-3 col-4" id="cover_image_preview">
-                    <img src="" class="img-fluid" alt="">
+                <div class="mb-3 col-4" >
+                    <img src="" class="img-fluid" alt="" id="cover_image_preview">
                 </div>
                 <div class="mb-3 col-8">
                     <label for="cover_image" class="form-label @error('name') is-invalid @enderror">Cover Image</label>

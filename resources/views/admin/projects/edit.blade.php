@@ -44,10 +44,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-4" id="cover_image_preview">
-
-                    
-                    <img src="{{asset('/storage/'.$project->cover_image)}}" class="img-fluid" alt="">
+                <div class="col-4" >
+                    <img src="{{asset('/storage/'.$project->cover_image)}}" class="img-fluid" alt="" id="cover_image_preview">
                 </div>
                 <div class="col-8">
                     <label for="cover_image" class="form-label @error('name') is-invalid @enderror">Cover Image</label>
@@ -62,7 +60,6 @@
 
                 <div class="mb-3 col">
                     <label for="description" class="form-label @error('description') is-invalid @enderror">Description</label>
-                    {{-- <input type="text" name="description" id="description" value="{{ old('description') ?? $project->description  }}" class="form-control"> --}}
                     <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{ old('description') ?? $project->description  }}</textarea>
                     @error('description')
                     <div class="invalid-feedback">{{ $message }}</div>

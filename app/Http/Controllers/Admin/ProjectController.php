@@ -69,7 +69,7 @@ class ProjectController extends Controller
         
         if($request->hasFile('cover_image')) {
         $cover_image_path = Storage::put("uploads/projects/cover_image", $data['cover_image']);
-        $project->cover_image_path = $cover_image_path;
+        $project->cover_image = $cover_image_path;
         }
         $project->save();
 
@@ -213,32 +213,5 @@ class ProjectController extends Controller
         ->with("message","project restored with success");
     }
 
-    // # validator
-    // private function validation($data) {
-    //     $validator = Validator::make(
-    //         $data, 
-    //         [
-    //         'name' => 'required|string',
-    //         'description' => 'nullable|string',
-    //         'repository' => 'nullable|string',
-    //         'type_id'=> 'nullable', 'exists:types,id',
-    //         'technologies' => 'nullable','exists:technologies,id',
-    //         'cover_image'=> 'nullable', 'image',
-    //       ],
-    //       [
-    //         'name.required' => 'The name is required',
-    //         'name.string' => 'The name must be a string',
-
-    //         'description.string' => 'The description must be a string',
-            
-    //         'repository.string' => 'The thumb must be a url',
-
-    //         'type_id.exists'=> 'The inserted Type is not valid',
-
-    //         'technologies.exist' => 'The inserted Technologies are not valid'
-    //       ]
-    //     )->validate();
-      
-    //     return $validator;
-    // }
+    
 }
